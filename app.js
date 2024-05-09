@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const catalogRouter = require("./routes/catalog");
 
 var app = express();
 
@@ -16,7 +17,7 @@ mongoDB();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+app.set('view engine', 'pug'); // name of the setting: view engine, we use pug for the view engine to render the page
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -25,7 +26,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/users', usersRouter); // anything starts with /users adds userRouter next to it 
+app.use('/catalog', catalogRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -40,7 +42,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error'); // render error.pug file on the page
 });
 
 module.exports = app;
