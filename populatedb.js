@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 console.log(
-  'This script populates some test books, authors, genres and bookinstances to your database. Specified database as argument - e.g.: node populatedb "mongodb+srv://cooluser:coolpassword@cluster0.lz91hw2.mongodb.net/local_library?retryWrites=true&w=majority"'
+  'This script populates some test books, authors, genres and bookinstances to your database'
 );
 
 // Get arguments passed on command line
@@ -156,7 +156,7 @@ async function createBooks() {
       "Summary of test book 1",
       "ISBN111111",
       authors[4],
-      [genres[0], genres[1]]
+      [genres[0], genres[2]]
     ),
     bookCreate(
       6,
@@ -164,7 +164,7 @@ async function createBooks() {
       "Summary of test book 2",
       "ISBN222222",
       authors[4],
-      false
+      [genres[2]]
     ),
   ]);
 }

@@ -2,10 +2,11 @@ extends layout
 
 block content 
   h1= title
-  
+
   if genre_list.length 
     ul 
       each genre in genre_list
+        if genre.books
         li 
           a(href = genre.url) #{genre.name}
   
