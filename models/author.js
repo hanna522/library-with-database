@@ -14,7 +14,7 @@ const AuthorSchema = new Schema({
 AuthorSchema.virtual("name").get(function () {
     let fullName = "";
     if (this.first_name && this.last_name) {
-        fullName = `${this.last_name}, ${this.last_name}`;
+        fullName = `${this.first_name}, ${this.last_name}`;
     }
     return fullName;
 });
@@ -22,6 +22,14 @@ AuthorSchema.virtual("name").get(function () {
 // Virtual for author's URL
 AuthorSchema.virtual("url").get(function() {
     return `/catalog/author/${this._id}`
+});
+
+AuthorSchema.virtual("birthYear").get(function () {
+  return this.date_of_birth ? this.date_of_birth.getFullYear() : null;
+});
+
+AuthorSchema.virtual("deathYear").get(function () {
+  return this.date_of_death ? this.date_of_death.getFullYear() : null;
 });
 
 const Author = mongoose.model("Author", AuthorSchema);
